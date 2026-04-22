@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 650 562.5"
+     preserveAspectRatio="xMidYMid meet"
+     width="100%" height="100%"
+     id="root"
+     style="background:#000;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;">
+  <title>Kaleidoscope · Drag · Draw · Copy</title>
+
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="75%">
+      <stop offset="0%"  stop-color="#1a0b2e"/>
+      <stop offset="60%" stop-color="#0a0514"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+
+    <radialGradient id="vignette" cx="50%" cy="50%" r="75%">
+      <stop offset="55%"  stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.75"/>
+    </radialGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur id="glowBlur" stdDeviation="2.5" in="SourceGraphic" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="hueShift">
+      <feColorMatrix type="hueRotate" values="0">
+        <animate attributeName="values"
+                 values="0;360" dur="22s" repeatCount="indefinite"/>
+      </feColorMatrix>
+    </filter>
+
+    <clipPath id="frame" clipPathUnits="userSpaceOnUse">
+      <path d="M 0 0 L 650,0 650,562.5 0,562.5 z"/>
+    </clipPath>
+    <clipPath id="triangle" clipPathUnits="userSpaceOnUse">
+      <path transform="translate(-64.951904,-37.5)" d="M 0,-75 65,37.5 l -130,0 z"/>
+    </clipPath>
+
+    <symbol id="star" overflow="visible">
+      <path d="M 0,-24 L 7,-7 25,-7 10,5 16,23 0,12 -16,23 -10,5 -25,-7 -7,-7 z"/>
+    </symbol>
+
+    <g id="gCell" clip-path="url(#triangle)" style="fill:none;stroke:#000;stroke-width:0">
+      <rect style="fill:#FF4FBB;opacity:0.25" width="180" height="180" x="-40" y="-40">
+        <animateTransform attributeName="transform" attributeType="XML" type="translate"
+                          from="160,-180" to="-60,-5" additive="sum"
+                          begin="0s" dur="10s" repeatCount="indefinite" fill="repeat"/>
+        <animateTransform attributeName="transform" attributeType="XML" type="rotate"
+                          from="360" to="1" additive="sum"
+                          begin="1.5s" dur="5.8s" repeatCount="indefinite" fill="repeat"/>
+      </rect>
+      <rect style="fill:#2BC2CC;opacity:0.5" width="50" height="50" x="-25" y="-25">
+        <animateTransform attributeName="transform" type="translate"
+                          from="-60,-130" to="-40,40" additive="sum"
+                          begin="0s" dur="9s" repeatCount="indefinite" fill="repeat"/>
+        <animateTransform attributeName="transform" type="rotate"
+                          from="360" to="0" additive="sum"
+                          begin="0s" dur="4s" repeatCount="indefinite" fill="repeat"/>
+      </rect>
+      <rect style="fill:#2EAAB2;opacity:0.5" width="140" height="40" x="-20" y="-20">
+        <animateTransform attributeName="transform" type="translate"
+                          from="-60,40" to="0,-50" additive="sum"
+                          begin="0s" dur="6s" repeatCount="indefinite" fill="repeat"/>
+        <animateTransform attributeName="transform" type="rotate"
+                          from="0" to="360" additive="sum"
+                          begin="0s" dur="5s" repeatCount="indefinite" fill="repeat"/>
+      </rect>
+      <rect style="fill:#4341B2;opacity:0.5" width="40" height="40" x="-120" y="-20">
+        <animateTransform attributeName="transform" type="translate"
+                          from="-80,-100" to="-20,20" additive="sum"
+                          begin="0s" dur="5s" repeatCount="indefinite" fill="repeat"/>
+        <animateTransform attributeName="transform" type="rotate"
+                          from="0" to="360" additive="sum"
+                          begin="0s" dur="2s" repeatCount="indefinite" fill="repeat"/>
+      </rect>
+      <rect style="fill:#FFB78F;opacity:0.5" width="40" height="40" x="-20" y="-20">
+        <animateTransform attributeName="transform" type="translate"
+                          from="-150,-40" to="20,-20" additive="sum"
+                          begin="0s" dur="17s" repeatCount="indefinite" fill="repeat"/>
+        <animateTransform attributeName="transform" type="rotate"
+                          from="360" to="0" additive="sum"
+                          begin="0s" dur="4s" repeatCount="indefinite" fill="repeat"/>
+      </rect>
+      <rect style="fill:#64CC4A;opacity:0.5" width="50" height="80" x="-25" y="-40">
+        <animateTransform attributeName="transform" type="translate"
+                          from="-70,40" to="30,-120" additive="sum"
+                          begin="0s" dur="3s" repeatCount="indefinite" fill="repeat"/>
+        <animateTransform attributeName="transform" type="rotate"
+                          from="360" to="0" additive="sum"
+                          begin="0s" dur="4s" repeatCount="indefinite" fill="repeat"/>
+      </rect>
+      <circle r="12" fill="#ffd700" opacity="0.75">
+        <animateMotion dur="7s" repeatCount="indefinite"
+                       path="M -100,-80 Q 40,-120 60,-20 Q 20,40 -60,40 Q -120,-10 -100,-80 z"/>
+        <animate attributeName="r" values="8;18;8" dur="3.5s" repeatCount="indefinite"/>
+      </circle>
+      <g opacity="0.75">
+        <use xlink:href="#star" fill="#ff3d8a">
+          <animateTransform attributeName="transform" type="rotate"
+                            from="0" to="360" additive="sum"
+                            dur="4.5s" repeatCount="indefinite"/>
+          <animateTransform attributeName="transform" type="translate"
+                            values="-50,-40; 30,-70; -20,-10; -50,-40" additive="sum"
+                            dur="11s" repeatCount="indefinite"/>
+        </use>
+      </g>
+      <circle cx="-30" cy="30" r="20" fill="none" stroke="#00e5ff" stroke-width="3" opacity="0.6">
+        <animate attributeName="r" values="5;42;5" dur="4s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.9;0;0.9" dur="4s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-width" values="4;0.5;4" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <polygon points="0,-18 16,12 -16,12" fill="#9d4edd" opacity="0.65">
+        <animateTransform attributeName="transform" type="translate"
+                          values="-70,20; 30,-50; -80,-30; -70,20" additive="sum"
+                          dur="8s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="rotate"
+                          from="0" to="-360" additive="sum"
+                          dur="6s" repeatCount="indefinite"/>
+      </polygon>
+      <circle r="4" fill="#fff" opacity="0.9">
+        <animateMotion dur="5s" repeatCount="indefinite"
+                       path="M 0,0 Q 40,-60 -60,-40 Q -80,30 20,50 Q 80,0 0,0 z"/>
+        <animate attributeName="opacity" values="0.2;1;0.2" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+
+      <g id="drawings"></g>
+    </g>
+  </defs>
+
+  <!-- ==================== RENDER ==================== -->
+
+  <rect width="650" height="562.5" fill="url(#bgGrad)"/>
+
+  <g id="scene" clip-path="url(#frame)" filter="url(#hueShift)" style="transition:opacity 0.35s ease;">
+    <animateTransform id="sceneRot" attributeName="transform" type="rotate"
+                      from="0 325 281.25" to="360 325 281.25"
+                      dur="2.4s" begin="indefinite"/>
+    <g filter="url(#glow)">
+      <use xlink:href="#gCell"/>
+      <use xlink:href="#gCell" transform="translate(194.85571,112.5)"/>
+      <use xlink:href="#gCell" transform="translate(0,225)"/>
+      <use xlink:href="#gCell" transform="translate(194.85571,337.5)"/>
+      <use xlink:href="#gCell" transform="translate(0,450)"/>
+      <use xlink:href="#gCell" transform="translate(194.85571,562.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,0.8660254,0.5,0,0)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,0.8660254,0.5,194.85572,112.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,0.8660254,0.5,0,225)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,0.8660254,0.5,194.85572,337.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,0.8660254,0.5,0,450)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,0.8660254,0.5,194.85572,562.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,-0.8660254,-0.5,0,0)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,-0.8660254,-0.5,194.85571,112.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,-0.8660254,-0.5,0,225)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,-0.8660254,-0.5,194.85571,337.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,-0.8660254,-0.5,0,450)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,-0.8660254,-0.5,194.85571,562.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,-0.8660254,0.5,0,0)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,-0.8660254,0.5,194.85571,112.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,-0.8660254,0.5,0,225)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,-0.8660254,0.5,194.85571,337.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,-0.8660254,0.5,0,450)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,-0.8660254,0.5,194.85571,562.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,0.8660254,-0.5,0,0)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,0.8660254,-0.5,194.85572,112.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,0.8660254,-0.5,0,225)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,0.8660254,-0.5,194.85572,337.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,0.8660254,-0.5,0,450)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,0.8660254,-0.5,194.85572,562.5)"/>
+      <use xlink:href="#gCell" transform="matrix(1,0,0,-1,0,0)"/>
+      <use xlink:href="#gCell" transform="matrix(1,0,0,-1,194.85571,112.5)"/>
+      <use xlink:href="#gCell" transform="matrix(1,0,0,-1,0,225)"/>
+      <use xlink:href="#gCell" transform="matrix(1,0,0,-1,194.85571,337.5)"/>
+      <use xlink:href="#gCell" transform="matrix(1,0,0,-1,0,450)"/>
+      <use xlink:href="#gCell" transform="matrix(1,0,0,-1,194.85571,562.5)"/>
+      <use xlink:href="#gCell" transform="translate(389.71143,0)"/>
+      <use xlink:href="#gCell" transform="translate(584.56714,112.5)"/>
+      <use xlink:href="#gCell" transform="translate(389.71143,225)"/>
+      <use xlink:href="#gCell" transform="translate(584.56714,337.5)"/>
+      <use xlink:href="#gCell" transform="translate(389.71143,450)"/>
+      <use xlink:href="#gCell" transform="translate(584.56714,562.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,0.8660254,0.5,389.71143,0)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,0.8660254,0.5,584.56715,112.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,0.8660254,0.5,389.71143,225)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,0.8660254,0.5,584.56715,337.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,0.8660254,0.5,389.71143,450)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,0.8660254,0.5,584.56715,562.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,-0.8660254,-0.5,389.71143,0)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,-0.8660254,-0.5,584.56714,112.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,-0.8660254,-0.5,389.71143,225)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,-0.8660254,-0.5,584.56714,337.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,-0.8660254,-0.5,389.71143,450)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,0.8660254,-0.8660254,-0.5,584.56714,562.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,-0.8660254,0.5,389.71143,0)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,-0.8660254,0.5,584.56714,112.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,-0.8660254,0.5,389.71143,225)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,-0.8660254,0.5,584.56714,337.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,-0.8660254,0.5,389.71143,450)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,-0.8660254,0.5,584.56714,562.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,0.8660254,-0.5,389.71143,0)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,0.8660254,-0.5,584.56715,112.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,0.8660254,-0.5,389.71143,225)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,0.8660254,-0.5,584.56715,337.5)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,0.8660254,-0.5,389.71143,450)"/>
+      <use xlink:href="#gCell" transform="matrix(-0.5,-0.8660254,0.8660254,-0.5,584.56715,562.5)"/>
+      <use xlink:href="#gCell" transform="matrix(1,0,0,-1,389.71143,0)"/>
+      <use xlink:href="#gCell" transform="matrix(1,0,0,-1,584.56714,112.5)"/>
+      <use xlink:href="#gCell" transform="matrix(1,0,0,-1,389.71143,225)"/>
+      <use xlink:href="#gCell" transform="matrix(1,0,0,-1,584.56714,337.5)"/>
+      <use xlink:href="#gCell" transform="matrix(1,0,0,-1,389.71143,450)"/>
+      <use xlink:href="#gCell" transform="matrix(1,0,0,-1,584.56714,562.5)"/>
+    </g>
+  </g>
+
+  <rect width="650" height="562.5" fill="url(#vignette)" style="pointer-events:none"/>
+
+  <g style="pointer-events:none">
+    <circle cx="325" cy="281.25" r="0" fill="none" stroke="#ffffff" stroke-width="5" opacity="0">
+      <animate id="b1r"  attributeName="r"            from="0"   to="520" dur="1.4s" begin="indefinite"/>
+      <animate id="b1o"  attributeName="opacity"      from="0.9" to="0"   dur="1.4s" begin="indefinite"/>
+      <animate id="b1sw" attributeName="stroke-width" from="8"   to="0.2" dur="1.4s" begin="indefinite"/>
+    </circle>
+    <circle cx="325" cy="281.25" r="0" fill="none" stroke="#ff4fbb" stroke-width="3" opacity="0">
+      <animate id="b2r"  attributeName="r"       from="0"   to="460" dur="1.4s" begin="indefinite"/>
+      <animate id="b2o"  attributeName="opacity" from="0.8" to="0"   dur="1.4s" begin="indefinite"/>
+    </circle>
+    <circle cx="325" cy="281.25" r="0" fill="none" stroke="#00e5ff" stroke-width="2" opacity="0">
+      <animate id="b3r"  attributeName="r"       from="0"   to="400" dur="1.4s" begin="indefinite"/>
+      <animate id="b3o"  attributeName="opacity" from="0.7" to="0"   dur="1.4s" begin="indefinite"/>
+    </circle>
+  </g>
+
+  <g id="drawIndicator" opacity="0" style="pointer-events:none;transition:opacity 0.35s ease;">
+    <polygon points="325.17,92.92 541.83,467.92 108.5,467.92"
+             fill="#ff3d8a" fill-opacity="0.07"
+             stroke="#ff3d8a" stroke-opacity="0.65"
+             stroke-width="2" stroke-dasharray="6,8" stroke-linejoin="round">
+      <animate attributeName="stroke-dashoffset" from="0" to="28" dur="1.8s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-opacity" values="0.45;0.9;0.45" dur="2.2s" repeatCount="indefinite"/>
+    </polygon>
+    <text x="325" y="76" text-anchor="middle"
+          style="font-family:Avenir,Montserrat,Corbel,sans-serif;font-size:13px;font-weight:500;letter-spacing:5px;fill:#ff3d8a;">
+      DRAW INSIDE THIS TRIANGLE
+    </text>
+    <text x="325" y="92" text-anchor="middle"
+          style="font-family:Avenir,Montserrat,Corbel,sans-serif;font-size:10px;font-weight:300;letter-spacing:3px;fill:#fff;opacity:0.55;">
+      reflects to all 67 cells
+    </text>
+  </g>
+
+  <!-- Persistent hint (only visible when not in draw mode) -->
+  <g id="bottomHint" style="pointer-events:none;transition:opacity 0.3s ease;">
+    <text x="325" y="550" text-anchor="middle"
+          style="font-family:Avenir,Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif;font-size:9.5px;font-weight:300;letter-spacing:2.5px;fill:#fff;opacity:0.5;">
+      DRAG TO PLAY &#183; TAP BURST &#183; [Z][D][X][C][H] OR BUTTONS
+    </text>
+  </g>
+
+  <g id="hud" opacity="0" style="pointer-events:none">
+    <rect x="18" y="18" width="170" height="56" rx="8"
+          fill="#000" fill-opacity="0.55"
+          stroke="#fff" stroke-opacity="0.15" stroke-width="1"/>
+    <text id="speedLabel" x="30" y="38"
+          style="font-family:'SF Mono',Consolas,Monaco,monospace;font-size:10px;fill:#fff;letter-spacing:1px;">SPEED  1.00x</text>
+    <rect x="30" y="44" width="146" height="3" rx="1.5" fill="#fff" fill-opacity="0.12"/>
+    <line x1="103" y1="43" x2="103" y2="48" stroke="#fff" stroke-opacity="0.4" stroke-width="0.5"/>
+    <rect id="speedBar" x="103" y="44" width="0" height="3" rx="1.5" fill="#ff4fbb"/>
+    <text id="glowLabel" x="30" y="60"
+          style="font-family:'SF Mono',Consolas,Monaco,monospace;font-size:10px;fill:#fff;letter-spacing:1px;">GLOW    2.5</text>
+    <rect x="30" y="66" width="146" height="3" rx="1.5" fill="#fff" fill-opacity="0.12"/>
+    <rect id="glowBar" x="30" y="66" width="18" height="3" rx="1.5" fill="#00e5ff"/>
+  </g>
+
+  <!-- Tool buttons top-right: Z C X D ? -->
+  <g id="tools" style="cursor:pointer;">
+    <g id="btnUndo" data-action="undo">
+      <title>Undo last stroke (Z)</title>
+      <circle cx="464" cy="30" r="16" fill="#000" fill-opacity="0.55" stroke="#fff" stroke-opacity="0.35" stroke-width="1.2"/>
+      <text x="464" y="35" text-anchor="middle"
+            style="font-family:'SF Mono',Consolas,monospace;font-size:13px;font-weight:600;fill:#fff;pointer-events:none;">Z</text>
+    </g>
+    <g id="btnCopy" data-action="copy">
+      <title>Copy SVG to clipboard (C)</title>
+      <circle cx="506" cy="30" r="16" fill="#000" fill-opacity="0.55" stroke="#fff" stroke-opacity="0.35" stroke-width="1.2"/>
+      <text x="506" y="35" text-anchor="middle"
+            style="font-family:'SF Mono',Consolas,monospace;font-size:13px;font-weight:600;fill:#fff;pointer-events:none;">C</text>
+    </g>
+    <g id="btnClear" data-action="clear">
+      <title>Clear drawings (X)</title>
+      <circle cx="548" cy="30" r="16" fill="#000" fill-opacity="0.55" stroke="#fff" stroke-opacity="0.35" stroke-width="1.2"/>
+      <text x="548" y="35" text-anchor="middle"
+            style="font-family:'SF Mono',Consolas,monospace;font-size:13px;font-weight:600;fill:#fff;pointer-events:none;">X</text>
+    </g>
+    <g id="btnDraw" data-action="draw">
+      <title>Toggle draw mode (D)</title>
+      <circle id="btnDrawCircle" cx="590" cy="30" r="16" fill="#000" fill-opacity="0.55" stroke="#fff" stroke-opacity="0.35" stroke-width="1.2"/>
+      <text x="590" y="35" text-anchor="middle"
+            style="font-family:'SF Mono',Consolas,monospace;font-size:13px;font-weight:600;fill:#fff;pointer-events:none;">D</text>
+    </g>
+    <g id="btnHelp" data-action="help">
+      <title>Help (H or ?)</title>
+      <circle cx="632" cy="30" r="16" fill="#000" fill-opacity="0.55" stroke="#fff" stroke-opacity="0.35" stroke-width="1.2"/>
+      <text x="632" y="35" text-anchor="middle"
+            style="font-family:Avenir,Montserrat,sans-serif;font-size:16px;font-weight:400;fill:#fff;pointer-events:none;">?</text>
+    </g>
+  </g>
+
+  <!-- Draw toolbar (populated by JS, shown only in draw mode) -->
+  <g id="drawToolbar" opacity="0" style="transition:opacity 0.35s ease;pointer-events:none;"></g>
+
+  <g id="toast" opacity="0" style="pointer-events:none;transition:opacity 0.25s ease;">
+    <rect x="155" y="454" width="340" height="34" rx="17"
+          fill="#000" fill-opacity="0.9"
+          stroke="#fff" stroke-opacity="0.2" stroke-width="1"/>
+    <text id="toastText" x="325" y="475" text-anchor="middle"
+          style="font-family:Avenir,Montserrat,Corbel,sans-serif;font-size:11px;font-weight:300;letter-spacing:1.5px;fill:#fff;">message</text>
+  </g>
+
+  <g id="helpOverlay" style="cursor:pointer;transition:opacity 0.4s ease;">
+    <rect width="650" height="562.5" fill="#000" fill-opacity="0.86"/>
+    <g transform="translate(325, 281.25)">
+      <rect x="-275" y="-255" width="550" height="510" rx="16"
+            fill="#0a0514" fill-opacity="0.97"
+            stroke="#fff" stroke-opacity="0.2" stroke-width="1"/>
+
+      <text x="0" y="-195" text-anchor="middle"
+            style="font-family:Avenir,Montserrat,Corbel,sans-serif;font-size:36px;font-weight:300;letter-spacing:12px;fill:#fff;">
+        KALEIDOSKOP
+      </text>
+      <text x="0" y="-172" text-anchor="middle"
+            style="font-family:Avenir,Montserrat,sans-serif;font-size:11px;font-weight:300;letter-spacing:5px;fill:#fff;opacity:0.5;">
+        INTERACTIVE SVG SANDBOX
+      </text>
+
+      <line x1="-120" y1="-148" x2="120" y2="-148" stroke="#fff" stroke-opacity="0.2"/>
+
+      <text x="-220" y="-115"
+            style="font-family:Avenir,Montserrat,sans-serif;font-size:10px;font-weight:600;letter-spacing:4px;fill:#ff4fbb;">POINTER</text>
+
+      <g style="font-family:Avenir,Montserrat,sans-serif;font-size:14px;font-weight:300;fill:#fff;">
+        <text x="-220" y="-86" style="font-weight:500;letter-spacing:2px;">DRAG &#8596;</text>
+        <text x="-80"  y="-86" style="opacity:0.72;">speed &#183; includes reverse</text>
+
+        <text x="-220" y="-62" style="font-weight:500;letter-spacing:2px;">DRAG &#8597;</text>
+        <text x="-80"  y="-62" style="opacity:0.72;">glow intensity</text>
+
+        <text x="-220" y="-38" style="font-weight:500;letter-spacing:2px;">TAP</text>
+        <text x="-80"  y="-38" style="opacity:0.72;">trigger burst + rotation</text>
+
+        <text x="-220" y="-14" style="font-weight:500;letter-spacing:2px;">RELEASE</text>
+        <text x="-80"  y="-14" style="opacity:0.72;">values spring back</text>
+      </g>
+
+      <text x="-220" y="20"
+            style="font-family:Avenir,Montserrat,sans-serif;font-size:10px;font-weight:600;letter-spacing:4px;fill:#00e5ff;">KEYBOARD &amp; BUTTONS</text>
+
+      <g style="font-family:Avenir,Montserrat,sans-serif;font-size:14px;font-weight:300;fill:#fff;">
+        <text x="-220" y="48"  style="font-family:'SF Mono',Consolas,monospace;font-weight:600;">D</text>
+        <text x="-80"  y="48"  style="opacity:0.72;">toggle draw mode</text>
+
+        <text x="-220" y="72"  style="font-family:'SF Mono',Consolas,monospace;font-weight:600;">Z</text>
+        <text x="-80"  y="72"  style="opacity:0.72;">undo last stroke</text>
+
+        <text x="-220" y="96"  style="font-family:'SF Mono',Consolas,monospace;font-weight:600;">X</text>
+        <text x="-80"  y="96"  style="opacity:0.72;">clear all drawings</text>
+
+        <text x="-220" y="120" style="font-family:'SF Mono',Consolas,monospace;font-weight:600;">C</text>
+        <text x="-80"  y="120" style="opacity:0.72;">copy SVG to clipboard</text>
+
+        <text x="-220" y="144" style="font-family:'SF Mono',Consolas,monospace;font-weight:600;">H  or  ?</text>
+        <text x="-80"  y="144" style="opacity:0.72;">show this help panel</text>
+
+        <text x="-220" y="168" style="font-family:'SF Mono',Consolas,monospace;font-weight:600;">ESC</text>
+        <text x="-80"  y="168" style="opacity:0.72;">exit draw mode / dismiss</text>
+      </g>
+
+      <line x1="-120" y1="195" x2="120" y2="195" stroke="#fff" stroke-opacity="0.2"/>
+
+      <text x="0" y="222" text-anchor="middle"
+            style="font-family:Avenir,Montserrat,sans-serif;font-size:10px;font-weight:300;letter-spacing:3px;fill:#fff;opacity:0.55;">
+        In draw mode: pick color and size from the bottom toolbar
+      </text>
+      <text x="0" y="244" text-anchor="middle"
+            style="font-family:Avenir,Montserrat,sans-serif;font-size:11px;font-weight:300;letter-spacing:4px;fill:#fff;opacity:0.65;">
+        CLICK ANYWHERE OR PRESS ANY KEY TO BEGIN
+      </text>
+    </g>
+  </g>
+
+  <!-- ==================== SCRIPT ==================== -->
+  <script type="application/ecmascript"><![CDATA[
+    (function() {
+      var SVG_NS = 'http://www.w3.org/2000/svg';
+      var $  = function(id){ return document.getElementById(id); };
+
+      var svg       = $('root');
+      var scene     = $('scene');
+      var blur      = $('glowBlur');
+      var hud       = $('hud');
+      var speedLbl  = $('speedLabel');
+      var glowLbl   = $('glowLabel');
+      var speedBar  = $('speedBar');
+      var glowBar   = $('glowBar');
+      var help      = $('helpOverlay');
+      var toast     = $('toast');
+      var toastText = $('toastText');
+      var drawInd   = $('drawIndicator');
+      var drawings  = $('drawings');
+      var btnDrawCircle = $('btnDrawCircle');
+      var drawToolbar = $('drawToolbar');
+      var bottomHint  = $('bottomHint');
+
+      var BASE_SPEED = 1, BASE_GLOW = 2.5;
+      var MIN_SPEED = -2.5, MAX_SPEED = 5;
+      var MIN_GLOW  = 0.2,  MAX_GLOW  = 20;
+
+      var DRAW_SCALE    = 0.3;
+      var DRAW_CENTER_X = 325, DRAW_CENTER_Y = 281.25;
+      var DRAW_CELL_CX  = -65, DRAW_CELL_CY  = -56;
+
+      var COLORS = [
+        '#FFFFFF', '#FF4FBB', '#FF3D8A', '#FFD700',
+        '#64CC4A', '#2BC2CC', '#00E5FF', '#9D4EDD', '#4341B2'
+      ];
+      var WIDTHS = [1.5, 3, 6];
+
+      var speed = BASE_SPEED, targetSpeed = BASE_SPEED;
+      var glow  = BASE_GLOW,  targetGlow  = BASE_GLOW;
+      var hudOpa = 0, targetHud = 0;
+
+      var drawMode = false;
+      var helpVisible = true;
+
+      var dragging = false, moved = false;
+      var sx = 0, sy = 0, pid = null;
+      var hudHideTimer = null, toastTimer = null;
+
+      var currentPath = null, currentD = '';
+
+      // Drawing state
+      var currentColor = null;      // null = random per-stroke
+      var currentWidth = WIDTHS[1]; // default middle
+      var drawHistory  = [];        // for undo
+
+      // ---- Helpers ----
+      function mkEl(tag, attrs) {
+        var el = document.createElementNS(SVG_NS, tag);
+        if (attrs) for (var k in attrs) el.setAttribute(k, attrs[k]);
+        return el;
+      }
+      function svgPoint(cx, cy) {
+        var pt = svg.createSVGPoint();
+        pt.x = cx; pt.y = cy;
+        var ctm = svg.getScreenCTM();
+        if (!ctm) return { x: cx, y: cy };
+        return pt.matrixTransform(ctm.inverse());
+      }
+      function screenToCell(p) {
+        return {
+          x: (p.x - DRAW_CENTER_X) * DRAW_SCALE + DRAW_CELL_CX,
+          y: (p.y - DRAW_CENTER_Y) * DRAW_SCALE + DRAW_CELL_CY
+        };
+      }
+      function showToast(msg, dur) {
+        dur = dur || 1600;
+        toastText.textContent = msg;
+        toast.style.opacity = 1;
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function(){ toast.style.opacity = 0; }, dur);
+      }
+      function hideHelp() {
+        if (!helpVisible) return;
+        helpVisible = false;
+        help.style.opacity = 0;
+        help.style.pointerEvents = 'none';
+      }
+      function showHelp() {
+        helpVisible = true;
+        help.style.opacity = 1;
+        help.style.pointerEvents = 'auto';
+      }
+      function setDrawButtonActive(on) {
+        if (on) {
+          btnDrawCircle.setAttribute('fill', '#ff3d8a');
+          btnDrawCircle.setAttribute('fill-opacity', '0.35');
+          btnDrawCircle.setAttribute('stroke', '#ff3d8a');
+          btnDrawCircle.setAttribute('stroke-opacity', '1');
+        } else {
+          btnDrawCircle.setAttribute('fill', '#000');
+          btnDrawCircle.setAttribute('fill-opacity', '0.55');
+          btnDrawCircle.setAttribute('stroke', '#fff');
+          btnDrawCircle.setAttribute('stroke-opacity', '0.35');
+        }
+      }
+
+      // ---- Build draw toolbar (bottom) ----
+      var colorSwatches = [];
+      var widthSwatches = [];
+      var colorRing = null;
+      var widthRing = null;
+
+      function buildToolbar() {
+        // Background pill
+        var bg = mkEl('rect', {
+          x: 135, y: 486, width: 380, height: 36, rx: 18,
+          fill: '#000', 'fill-opacity': 0.72,
+          stroke: '#fff', 'stroke-opacity': 0.2, 'stroke-width': 1
+        });
+        drawToolbar.appendChild(bg);
+
+        var cy = 504;
+
+        // Random swatch (special): 4 colored dots inside
+        var randG = mkEl('g', { id: 'sw_random', style: 'cursor:pointer;' });
+        randG.appendChild(mkEl('circle', { cx: 155, cy: cy, r: 13, fill: 'transparent' })); // hit area
+        randG.appendChild(mkEl('circle', { cx: 155, cy: cy, r: 10, fill: '#111', stroke: '#fff', 'stroke-opacity': 0.4, 'stroke-width': 1 }));
+        randG.appendChild(mkEl('circle', { cx: 152, cy: cy - 3, r: 2.2, fill: '#FF4FBB' }));
+        randG.appendChild(mkEl('circle', { cx: 158, cy: cy - 3, r: 2.2, fill: '#FFD700' }));
+        randG.appendChild(mkEl('circle', { cx: 152, cy: cy + 3, r: 2.2, fill: '#00E5FF' }));
+        randG.appendChild(mkEl('circle', { cx: 158, cy: cy + 3, r: 2.2, fill: '#64CC4A' }));
+        randG.addEventListener('pointerdown', function(e){
+          e.stopPropagation(); e.preventDefault();
+          selectColor(null);
+        });
+        drawToolbar.appendChild(randG);
+        colorSwatches.push({ el: randG, cx: 155, cy: cy, value: null });
+
+        // 9 solid color swatches
+        var startX = 180;
+        var spacing = 17;
+        for (var i = 0; i < COLORS.length; i++) {
+          var cx = startX + i * spacing;
+          var col = COLORS[i];
+          var g = mkEl('g', { id: 'sw_c' + i, style: 'cursor:pointer;' });
+          g.appendChild(mkEl('circle', { cx: cx, cy: cy, r: 11, fill: 'transparent' }));
+          g.appendChild(mkEl('circle', { cx: cx, cy: cy, r: 7, fill: col }));
+          (function(c){
+            g.addEventListener('pointerdown', function(e){
+              e.stopPropagation(); e.preventDefault();
+              selectColor(c);
+            });
+          })(col);
+          drawToolbar.appendChild(g);
+          colorSwatches.push({ el: g, cx: cx, cy: cy, value: col });
+        }
+
+        // Active color ring
+        colorRing = mkEl('circle', {
+          cx: 155, cy: cy, r: 12,
+          fill: 'none', stroke: '#fff', 'stroke-width': 1.8,
+          'pointer-events': 'none'
+        });
+        drawToolbar.appendChild(colorRing);
+
+        // Divider
+        drawToolbar.appendChild(mkEl('line', {
+          x1: startX + COLORS.length * spacing + 4, y1: 494,
+          x2: startX + COLORS.length * spacing + 4, y2: 514,
+          stroke: '#fff', 'stroke-opacity': 0.2, 'stroke-width': 1
+        }));
+
+        // 3 width swatches
+        var wStartX = 360;
+        var wSpacing = 33;
+        for (var j = 0; j < WIDTHS.length; j++) {
+          var wcx = wStartX + j * wSpacing;
+          var wVal = WIDTHS[j];
+          var wg = mkEl('g', { id: 'sw_w' + j, style: 'cursor:pointer;' });
+          wg.appendChild(mkEl('circle', { cx: wcx, cy: cy, r: 14, fill: 'transparent' }));
+          // inner dot representing stroke width (scaled for visibility)
+          wg.appendChild(mkEl('circle', { cx: wcx, cy: cy, r: wVal * 0.85 + 1, fill: '#fff' }));
+          (function(w){
+            wg.addEventListener('pointerdown', function(e){
+              e.stopPropagation(); e.preventDefault();
+              selectWidth(w);
+            });
+          })(wVal);
+          drawToolbar.appendChild(wg);
+          widthSwatches.push({ el: wg, cx: wcx, cy: cy, value: wVal });
+        }
+
+        // Active width ring
+        widthRing = mkEl('circle', {
+          cx: wStartX + 1 * wSpacing, cy: cy, r: 14,
+          fill: 'none', stroke: '#fff', 'stroke-width': 1.8,
+          'pointer-events': 'none'
+        });
+        drawToolbar.appendChild(widthRing);
+
+        updateColorRing();
+        updateWidthRing();
+      }
+
+      function selectColor(c) {
+        currentColor = c;
+        updateColorRing();
+        showToast(c === null ? 'color: random per stroke' : 'color: ' + c.toLowerCase());
+      }
+      function selectWidth(w) {
+        currentWidth = w;
+        updateWidthRing();
+        showToast('stroke size: ' + w);
+      }
+      function updateColorRing() {
+        for (var i = 0; i < colorSwatches.length; i++) {
+          if (colorSwatches[i].value === currentColor) {
+            colorRing.setAttribute('cx', colorSwatches[i].cx);
+            colorRing.setAttribute('r', currentColor === null ? 15 : 11);
+            return;
+          }
+        }
+      }
+      function updateWidthRing() {
+        for (var i = 0; i < widthSwatches.length; i++) {
+          if (widthSwatches[i].value === currentWidth) {
+            widthRing.setAttribute('cx', widthSwatches[i].cx);
+            return;
+          }
+        }
+      }
+
+      buildToolbar();
+
+      // ---- Draw operations ----
+      function toggleDraw() {
+        drawMode = !drawMode;
+        if (drawMode) {
+          svg.style.cursor = 'crosshair';
+          drawInd.style.opacity = '1';
+          scene.style.opacity = '0.55';
+          drawToolbar.style.opacity = '1';
+          drawToolbar.style.pointerEvents = 'auto';
+          bottomHint.style.opacity = '0';
+          setDrawButtonActive(true);
+          showToast('DRAW ON &#183; pick color &amp; size below', 2400);
+        } else {
+          svg.style.cursor = 'grab';
+          drawInd.style.opacity = '0';
+          scene.style.opacity = '1';
+          drawToolbar.style.opacity = '0';
+          drawToolbar.style.pointerEvents = 'none';
+          bottomHint.style.opacity = '1';
+          setDrawButtonActive(false);
+          showToast('draw mode off');
+        }
+      }
+      function clearDrawings() {
+        var n = drawHistory.length;
+        while (drawings.firstChild) drawings.removeChild(drawings.firstChild);
+        drawHistory = [];
+        showToast(n > 0 ? ('cleared ' + n + ' stroke' + (n === 1 ? '' : 's')) : 'nothing to clear');
+      }
+      function undoStroke() {
+        if (drawHistory.length === 0) { showToast('nothing to undo'); return; }
+        var path = drawHistory.pop();
+        if (path && path.parentNode) path.parentNode.removeChild(path);
+        showToast('undo &#183; ' + drawHistory.length + ' left');
+      }
+      function copySvg() {
+        try {
+          var xml = new XMLSerializer().serializeToString(svg);
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(xml).then(function(){
+              showToast('SVG copied &#183; ' + Math.round(xml.length / 1024) + ' KB');
+            }).catch(function(err){
+              console.error(err);
+              showToast('copy failed &#183; see console');
+            });
+          } else {
+            showToast('clipboard API unavailable');
+          }
+        } catch (err) {
+          console.error(err);
+          showToast('copy failed');
+        }
+      }
+
+      // Give a finished path life: rotate around its own centre (+ optional drift)
+      function animatePath(path) {
+        try {
+          var bb = path.getBBox();
+          if (!bb || bb.width === 0 || bb.height === 0) return;
+          var cx = (bb.x + bb.width / 2).toFixed(2);
+          var cy = (bb.y + bb.height / 2).toFixed(2);
+
+          var rotDur = (8 + Math.random() * 14).toFixed(1);     // 8–22s
+          var cw     = Math.random() < 0.5;
+
+          var rot = mkEl('animateTransform', {
+            attributeName: 'transform',
+            attributeType: 'XML',
+            type: 'rotate',
+            from: (cw ? 0 : 360) + ' ' + cx + ' ' + cy,
+            to:   (cw ? 360 : 0) + ' ' + cx + ' ' + cy,
+            dur: rotDur + 's',
+            repeatCount: 'indefinite',
+            additive: 'sum'
+          });
+          path.appendChild(rot);
+
+          // 60% chance of a gentle translate drift
+          if (Math.random() < 0.6) {
+            var dx = (Math.random() * 24 - 12).toFixed(1);
+            var dy = (Math.random() * 24 - 12).toFixed(1);
+            var tDur = (4 + Math.random() * 8).toFixed(1);
+            var trans = mkEl('animateTransform', {
+              attributeName: 'transform',
+              attributeType: 'XML',
+              type: 'translate',
+              values: '0,0; ' + dx + ',' + dy + '; 0,0',
+              dur: tDur + 's',
+              repeatCount: 'indefinite',
+              additive: 'sum'
+            });
+            path.appendChild(trans);
+          }
+        } catch (err) { console.error('animatePath failed', err); }
+      }
+
+      // ---- Tool button wiring ----
+      function wireButton(id, fn) {
+        var el = $(id);
+        if (!el) return;
+        el.addEventListener('pointerdown', function(e) {
+          if (helpVisible) { hideHelp(); }
+          e.stopPropagation();
+          e.preventDefault();
+          fn();
+        });
+      }
+      wireButton('btnHelp',  showHelp);
+      wireButton('btnDraw',  toggleDraw);
+      wireButton('btnClear', clearDrawings);
+      wireButton('btnCopy',  copySvg);
+      wireButton('btnUndo',  undoStroke);
+
+      // ---- Pointer events on canvas ----
+      svg.addEventListener('pointerdown', function(e) {
+        if (helpVisible) { hideHelp(); return; }
+
+        if (drawMode) {
+          var p = svgPoint(e.clientX, e.clientY);
+          var c = screenToCell(p);
+          var color = currentColor || COLORS[Math.floor(Math.random() * COLORS.length)];
+          currentPath = mkEl('path', {
+            d: 'M ' + c.x.toFixed(2) + ' ' + c.y.toFixed(2),
+            fill: 'none',
+            stroke: color,
+            'stroke-width': String(currentWidth),
+            'stroke-linecap': 'round',
+            'stroke-linejoin': 'round',
+            opacity: '0.95'
+          });
+          currentD = 'M ' + c.x.toFixed(2) + ' ' + c.y.toFixed(2);
+          drawings.appendChild(currentPath);
+          drawHistory.push(currentPath);
+          dragging = true;
+          pid = e.pointerId;
+          try { svg.setPointerCapture(pid); } catch(_) {}
+          e.preventDefault();
+          return;
+        }
+
+        dragging = true; moved = false;
+        sx = e.clientX; sy = e.clientY;
+        pid = e.pointerId;
+        try { svg.setPointerCapture(pid); } catch(_) {}
+        svg.style.cursor = 'grabbing';
+        targetHud = 1;
+        if (hudHideTimer) { clearTimeout(hudHideTimer); hudHideTimer = null; }
+        e.preventDefault();
+      });
+
+      svg.addEventListener('pointermove', function(e) {
+        if (!dragging) return;
+
+        if (drawMode && currentPath) {
+          var p = svgPoint(e.clientX, e.clientY);
+          var c = screenToCell(p);
+          currentD += ' L ' + c.x.toFixed(2) + ' ' + c.y.toFixed(2);
+          currentPath.setAttribute('d', currentD);
+          return;
+        }
+
+        var dx = e.clientX - sx;
+        var dy = e.clientY - sy;
+        if (!moved && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) moved = true;
+
+        var rect = svg.getBoundingClientRect();
+        var w = rect.width  || 650;
+        var h = rect.height || 562.5;
+
+        var sOff = (dx / (w * 0.5)) * 3;
+        targetSpeed = Math.max(MIN_SPEED, Math.min(MAX_SPEED, BASE_SPEED + sOff));
+
+        var gOff = (dy / (h * 0.5)) * 10;
+        targetGlow = Math.max(MIN_GLOW, Math.min(MAX_GLOW, BASE_GLOW + gOff));
+      });
+
+      function endDrag(e) {
+        if (!dragging) return;
+        dragging = false;
+        try { svg.releasePointerCapture(pid); } catch(_) {}
+
+        if (drawMode) {
+          if (currentPath) animatePath(currentPath);
+          currentPath = null;
+          currentD = '';
+          return;
+        }
+
+        svg.style.cursor = 'grab';
+        targetSpeed = BASE_SPEED;
+        targetGlow  = BASE_GLOW;
+
+        if (!moved) {
+          ['b1r','b1o','b1sw','b2r','b2o','b3r','b3o','sceneRot'].forEach(function(id){
+            var el = $(id);
+            if (el) { try { el.beginElement(); } catch(_) {} }
+          });
+          targetHud = 0;
+        } else {
+          hudHideTimer = setTimeout(function(){ targetHud = 0; }, 500);
+        }
+      }
+      svg.addEventListener('pointerup',          endDrag);
+      svg.addEventListener('pointercancel',      endDrag);
+      svg.addEventListener('lostpointercapture', endDrag);
+
+      // ---- Keyboard ----
+      function onKey(e) {
+        if (helpVisible) { hideHelp(); e.preventDefault(); return; }
+        var k = (e.key || '').toLowerCase();
+        if      (k === 'd')                          { toggleDraw();    e.preventDefault(); }
+        else if (k === 'c')                          { copySvg();       e.preventDefault(); }
+        else if (k === 'x')                          { clearDrawings(); e.preventDefault(); }
+        else if (k === 'z')                          { undoStroke();    e.preventDefault(); }
+        else if (k === 'h' || k === '?' || k === '/') { showHelp();     e.preventDefault(); }
+        else if (k === 'escape')                     { if (drawMode) toggleDraw(); }
+        // number keys 1-9 pick color in draw mode
+        else if (drawMode && /^[1-9]$/.test(k)) {
+          var idx = parseInt(k, 10) - 1;
+          if (idx >= 0 && idx < COLORS.length) selectColor(COLORS[idx]);
+          e.preventDefault();
+        }
+        // 0 picks random color
+        else if (drawMode && k === '0') { selectColor(null); e.preventDefault(); }
+      }
+      window.addEventListener('keydown', onKey);
+
+      help.addEventListener('pointerdown', function(e) {
+        hideHelp();
+        e.stopPropagation();
+      });
+
+      // ---- Time loop ----
+      try { svg.pauseAnimations(); } catch(_) {}
+      var t = 0.001, last = performance.now();
+
+      function tick(now) {
+        var dt = (now - last) / 1000;
+        if (dt > 0.1) dt = 0.1;
+        last = now;
+
+        var ease = (dragging && !drawMode) ? 0.28 : 0.08;
+        speed  += (targetSpeed - speed) * ease;
+        glow   += (targetGlow  - glow)  * ease;
+        hudOpa += (targetHud   - hudOpa) * 0.18;
+
+        var breath = 0.9 * Math.sin(now * 0.0009);
+        var eGlow  = Math.max(0.1, glow + breath);
+        blur.setAttribute('stdDeviation', eGlow.toFixed(2));
+
+        t += dt * speed;
+        if (t < 0.001) t = 0.001;
+        try { svg.setCurrentTime(t); } catch(_) {}
+
+        hud.setAttribute('opacity', hudOpa.toFixed(3));
+        if (hudOpa > 0.02) {
+          speedLbl.textContent = 'SPEED  ' + (speed >= 0 ? ' ' : '') + speed.toFixed(2) + 'x';
+          glowLbl.textContent  = 'GLOW    ' + glow.toFixed(1);
+
+          var sFrac  = Math.max(-1, Math.min(1, speed / Math.max(Math.abs(MIN_SPEED), MAX_SPEED)));
+          var sWidth = Math.abs(sFrac) * 73;
+          if (sFrac >= 0) {
+            speedBar.setAttribute('x', 103);
+            speedBar.setAttribute('width', sWidth.toFixed(1));
+          } else {
+            speedBar.setAttribute('x', (103 - sWidth).toFixed(1));
+            speedBar.setAttribute('width', sWidth.toFixed(1));
+          }
+          var gFrac = Math.max(0, Math.min(1, glow / MAX_GLOW));
+          glowBar.setAttribute('width', (gFrac * 146).toFixed(1));
+        }
+
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  ]]></script>
+</svg>
